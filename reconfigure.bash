@@ -17,8 +17,8 @@ if [ ! -d /root/buildfarm_deployment ]; then
   $BUILDFARM_DEPLOYMENT_PATH/$1/install_prerequisites.bash
 fi
 
-cp $1/hiera.yaml /etc/puppet
 mkdir -p /etc/puppet/hieradata
+cp $1/hiera.yaml /etc/puppet
 cp $1/common.yaml /etc/puppet/hieradata
 
 
