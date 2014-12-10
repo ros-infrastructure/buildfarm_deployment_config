@@ -11,16 +11,18 @@ if [ ! -d $1 ]; then
   return 1
 fi
 
-cp $1/hiera.yaml /etc/puppet
-mkdir -p /etc/puppet/hieradata
-cp $1/common.yaml /etc/puppet/hieradata
-
-
 if [ ! -d /root/buildfarm_deployment ]; then
   git clone $BUILDFARM_DEPLOYMENT_URL /root/buildfarm_deployment -b $BUILDFARM_DEPLOYMENT_BRANCH
   # todo make this more robust to changing prerequisites
   $BUILDFARM_DEPLOYMENT_PATH/$1/install_prerequisites.bash
 fi
+
+cp $1/hiera.yaml /etc/puppet
+mkdir -p /etc/puppet/hieradata
+cp $1/common.yaml /etc/puppet/hieradata
+
+
+
 
 
 
