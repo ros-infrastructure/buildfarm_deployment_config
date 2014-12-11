@@ -27,4 +27,4 @@ cp $1/common.yaml /etc/puppet/hieradata
 
 
 cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard $BUILDFARM_DEPLOYMENT_BRANCH
-puppet apply -v $BUILDFARM_DEPLOYMENT_PATH/master/manifests/site.pp --modulepath=/etc/puppet/modules:/usr/share/puppet/modules:$BUILDFARM_DEPLOYMENT_PATH/$1 -l /var/log/puppet.log
+puppet apply -v $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp --modulepath=/etc/puppet/modules:/usr/share/puppet/modules:$BUILDFARM_DEPLOYMENT_PATH/$1 -l /var/log/puppet.log

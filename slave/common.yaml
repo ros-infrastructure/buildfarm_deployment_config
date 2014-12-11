@@ -3,10 +3,10 @@ jenkins::slave::ui_pass: 'changeme'
 jenkins::slave::masterurl: 'http://master:8080'
 
 
-# master::ip: 54.67.30.249
-# repo::ip: 54.67.51.1
+master::ip: 54.67.30.249
+repo::ip: 54.67.51.1
 
 autoreconfigure: true
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard && ./reconfigure.bash slave"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard origin/master && ./reconfigure.bash slave"'
 
-run_squid: false
+run_squid: true

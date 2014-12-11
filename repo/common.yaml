@@ -2,7 +2,7 @@ jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
 jenkins::slave::masterurl: 'http://master:8080'
 
-# master::ip: 54.67.30.249
+master::ip: 54.67.30.249
 
 jenkins-slave::gpg_key_id: 'E5944336'
 jenkins-slave::gpg_private_key: |
@@ -123,4 +123,4 @@ jenkins-slave::reprepro_updater_config: |
 
 
 autoreconfigure: true
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard && ./reconfigure.bash repo"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin/master && git reset --hard master && ./reconfigure.bash repo"'
