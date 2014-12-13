@@ -51,3 +51,13 @@ jenkins::private_ssh_key: |
 
 autoreconfigure: false
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard origin/master && ./reconfigure.bash master"'
+
+
+### Gthub pupp-request builder settings
+
+# Required
+jenkins::github::username: rosbuild
+jenkins::github::token: XXXYYYZZZ
+
+# default value: https://api.github.com
+# jenkins::github::api_url: 'https://api.github.com'
