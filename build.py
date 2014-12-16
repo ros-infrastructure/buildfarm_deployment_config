@@ -8,7 +8,7 @@ import time
 DEFAULT_IMAGES = ['master', 'repo', 'slave']
 
 parser = argparse.ArgumentParser(description='Build docker images')
-parser.add_argument('targets', metavar='N', type=str, nargs='+',
+parser.add_argument('targets', metavar='N', type=str, nargs='*',
                     help='whcih images to build',
                     default=DEFAULT_IMAGES)
 args = parser.parse_args()
