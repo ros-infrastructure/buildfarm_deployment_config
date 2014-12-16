@@ -10,6 +10,7 @@ RUN apt-get install -y ruby
 RUN apt-get install -y git wget openjdk-7-jdk ca-certificates
 # installing here to leverage docker caching (will be enforced by puppet later)
 RUN apt-get install -y curl python3-pip python3-yaml python3-empy apt-transport-https bzr mercurial
+RUN apt-get install -y apparmor cgroup-lite ntp
 
 RUN gem install puppet --no-rdoc --no-ri
 RUN puppet module install rtyler/jenkins
@@ -32,7 +33,7 @@ VOLUME /var/lib/docker
 ENV DOCKER_DAEMON_ARGS --storage-driver=devicemapper
 # dmsetup needed to initialize devicemapper
 @[if folder == 'master' ]@
-CMD bash -c 'service ntp start && service jenkins start && dmsetup mknodes && /var/lib/jenkins/wrapdocker && while true; do sleep 1; done'
+CMD bash -c 'service ntp start && service jenkins start && service jenkins-slave start && dmsetup mknodes && /var/lib/jenkins/wrapdocker && while true; do sleep 1; done'
 @[end if]@
 @[if folder == 'slave']@
 CMD bash -c 'service ntp start && /etc/init.d/jenkins-slave start && dmsetup mknodes && /home/jenkins-slave/wrapdocker && while true; do sleep 1; done'
