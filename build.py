@@ -1,14 +1,25 @@
 #!/usr/bin/env python
 
+import argparse
 import em
 import subprocess
 import time
 
-targets = ['master', 'repo', 'slave']
+DEFAULT_IMAGES = ['master', 'repo', 'slave']
+
+parser = argparse.ArgumentParser(description='Build docker images')
+parser.add_argument('targets', metavar='N', type=str, nargs='+',
+                    help='whcih images to build',
+                    default=DEFAULT_IMAGES)
+args = parser.parse_args()
+
+invalid_targets = [t for t in args.targets if t not in DEFAULT_IMAGES]
+if invalid_targets:
+    parser.error("invalid timages %s" % invalid_targets)
 
 elapsed_times = {}
 
-for target in targets:
+for target in args.targets:
     start_time = time.time()
     with open('Dockerfile.em', 'r') as fh:
         template_contents = fh.read()
