@@ -11,6 +11,7 @@ This repository will contain your secrets such as private keys and access tokent
 Unfortunately you can't use the "Fork" button on GitHub and then make it private.
 
 To create a private fork.
+
 1. Create a new empty private repo
 1. Push from a clone of the public repo into the private repo.
 
@@ -33,13 +34,13 @@ On all three:
  * If you don't use the master branch on all machines change: `autoreconfigure::branch`
 
 
- On repo:
+On repo:
  * `jenkins-slave::authorized_keys`
  * `jenkins-slave::gpg_public_key`
  * `jenkins-slave::gpg_private_key`
  * `master::ip`
 
- On the master:
+On the master:
   * `jenkins::authorized_keys`
   * `jenkins::private_ssh_key`
   * `master::ip`
