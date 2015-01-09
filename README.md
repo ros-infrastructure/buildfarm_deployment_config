@@ -138,4 +138,4 @@ See the [ros_buildfarm repo](https://github.com/ros-infrastructure/ros_buildfarm
 
 # For information on development and testing
 
-See [docs/DevelopmentTesting.md](docs/DevelopmentTesting.md)
+See [doc/DevelopmentTesting.md](doc/DevelopmentTesting.md)
