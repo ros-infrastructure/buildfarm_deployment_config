@@ -31,6 +31,7 @@ In particular you should change the following:
 On all three:
  * `jenkins::slave::ui_pass`
  * on the master this should be the hashed password from above `user::admin::password_hash`
+  * The easiest way to create this is to setup a jenkins instance. Change the password, then copy the string out of config file on the jenkins server.
  * If you don't use the master branch on all machines change: `autoreconfigure::branch`
 
 
