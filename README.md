@@ -3,8 +3,6 @@
 This repository is the entry point for deploying and configuring.
 
 
-
-
 ### Forking (or not)
 
 This repository will contain your secrets such as private keys and access tokents you should make a copy of this repository and make it private.
@@ -32,37 +30,37 @@ On all three:
  * `jenkins::slave::ui_pass`
   * This is the passworkd for the slave to access the master
  * `user::admin::password_hash`
-  * On the master this should be the hashed password from above 
+  * On the master this should be the hashed password from above
   * The easiest way to create this is to setup a jenkins instance. Change the password, then copy the string out of config file on the jenkins server.
  * `autoreconfigure::branch`
-  * Change this if you don't use the master branch on all machines change: 
+  * Change this if you don't use the master branch on all machines change:
 
 
 On repo:
  * `jenkins-slave::authorized_keys`
   * This is the string contents for the authorized keys for the slaves to push into the repo. (It should match the `jenkins::private_ssh_key` on the master.
  * `jenkins-slave::gpg_public_key`
-  * The GPG public key matching the private key. This will be made available for download from the repo for verification. 
+  * The GPG public key matching the private key. This will be made available for download from the repo for verification.
  * `jenkins-slave::gpg_private_key`
-  * The GPG key with which to sign the repository. 
+  * The GPG key with which to sign the repository.
  * `master::ip`
-  * The IP address of the master instance. 
+  * The IP address of the master instance.
 
 On the master:
   * `jenkins::authorized_keys`
   * This is the string contents for the authorized keys for the slaves to push into the repo. (It should match the `jenkins::private_ssh_key` on the master.
   * `jenkins::private_ssh_key`
-   * The key which authorizes access to push content into the repository or to connect back to the master from a job. 
+   * The key which authorizes access to push content into the repository or to connect back to the master from a job.
   * `master::ip`
-   * The IP address of the master instance. 
+   * The IP address of the master instance.
   * `repo::ip`
-   * The IP address of the repository instance. 
+   * The IP address of the repository instance.
 
 On the slave:
   * `master::ip`
-   * The IP address of the master instance. 
+   * The IP address of the master instance.
   * `repo::ip`
-   * The IP address of the repository instance. 
+   * The IP address of the repository instance.
 
 ## Provisioning
 
@@ -138,38 +136,6 @@ Once you have customized all the content of
 Now that you have a running system you will need to add jobs for one or more rosdistros.
 See the [ros_buildfarm repo](https://github.com/ros-infrastructure/ros_buildfarm) for more info.
 
-## Docker based local testing
+# For information on development and testing
 
-For development a quick way to test is to run a local docker instance of each type of machine.
-The following are instructions for setting up these elements.
-
-### Change docker storage driver
-
-Edit `/etc/default/docker` and add the following line:
-
-    DOCKER_OPTS="--bip=172.17.42.1/16 --dns=172.17.42.1 --dns 8.8.8.8 --dns-search dev.docker --storage-driver=devicemapper"
-
-### DNS via skydns
-
-DNS lookup will be made available from the default dns above through [skydock](https://github.com/crosbymichael/skydock) in the `dev.docker` domain.
-The hostname format is `IMAGE.dev.docker` or `CONTAINER.IMAGE.dev.docker` if there are multiple containers with the same image.
-
-NOTE: For this to work `master::io`, `repo::ip`, and `slave::ip` must all be commented out in all `common.yaml` files.
-And the images for the master and repo must be named `master` and `repo` for the DNS lookup to work
-
-### Building the images
-
-To build the images:
-
-```bash
-python build.py
-```
-
-### Running the images:
-```bash
-fig up
-```
-
-### Accessign the local images
-
-This will expose the master as http://localhost:8080 and the repo at http://localhost:8081
+See [docs/DevelopmentTesting.md](docs/DevelopmentTesting.md)
