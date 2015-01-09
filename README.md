@@ -30,26 +30,39 @@ In particular you should change the following:
 
 On all three:
  * `jenkins::slave::ui_pass`
- * on the master this should be the hashed password from above `user::admin::password_hash`
+  * This is the passworkd for the slave to access the master
+ * `user::admin::password_hash`
+  * On the master this should be the hashed password from above 
   * The easiest way to create this is to setup a jenkins instance. Change the password, then copy the string out of config file on the jenkins server.
- * If you don't use the master branch on all machines change: `autoreconfigure::branch`
+ * `autoreconfigure::branch`
+  * Change this if you don't use the master branch on all machines change: 
 
 
 On repo:
  * `jenkins-slave::authorized_keys`
+  * This is the string contents for the authorized keys for the slaves to push into the repo. (It should match the `jenkins::private_ssh_key` on the master.
  * `jenkins-slave::gpg_public_key`
+  * The GPG public key matching the private key. This will be made available for download from the repo for verification. 
  * `jenkins-slave::gpg_private_key`
+  * The GPG key with which to sign the repository. 
  * `master::ip`
+  * The IP address of the master instance. 
 
 On the master:
   * `jenkins::authorized_keys`
+  * This is the string contents for the authorized keys for the slaves to push into the repo. (It should match the `jenkins::private_ssh_key` on the master.
   * `jenkins::private_ssh_key`
+   * The key which authorizes access to push content into the repository or to connect back to the master from a job. 
   * `master::ip`
+   * The IP address of the master instance. 
   * `repo::ip`
+   * The IP address of the repository instance. 
 
 On the slave:
   * `master::ip`
+   * The IP address of the master instance. 
   * `repo::ip`
+   * The IP address of the repository instance. 
 
 ## Provisioning
 
