@@ -1,11 +1,49 @@
 ## Overview
 
-This repository is the entry point for deploying and configuring.
+This repository is the entry point for deploying servers for the ROS buildfarm.
+It provides the configurations for [buildfarm_deployment](https://github.com/ros-infrastructure/buildfarm_deployment).
 
+After the servers have been provisioned you will then want to see the [ros_buildfarm](https://github.com/ros-infrastructure/ros_buildfarm) project for how to configure jenkins with ROS jobs.
 
-### Forking (or not)
+### Process
 
-This repository will contain your secrets such as private keys and access tokents you should make a copy of this repository and make it private.
+To effectively use this there will be three main steps.
+ * Provision the hardware/VM instances.
+ * Fork this repository and update the configuration.
+ * Deploy the forked configuration onto the machines.
+
+At the end of this process you will have a Jenkins master, an package repository, and N jenkins-slaves.
+
+## Provisioning
+
+The following EC2 instance types are recommended when deploying to Amazon EC2.<br/>
+They are intended as a guideline for choosing the appropriate parameters when deploying to other platforms.
+
+### Master
+
+<table>
+<tr><td>Memory</td><td>30Gb</td></tr>
+<tr><td>Disk space</td><td>200Gb</td></tr>
+<tr><td><strong>Recommendation</strong></td><td>r3.xlarge</td></tr>
+</table>
+
+### Slave
+
+<table>
+<tr><td>Disk space</td><td>200Gb+</td></tr>
+<tr><td><strong>Recommendation</strong></td><td>c3.large or faster</td></tr>
+</table>
+
+### Repo
+
+<table>
+<tr><td>Disk space</td><td>100Gb</td></tr>
+<tr><td><strong>Recommendation</strong></td><td>t2.medium</td></tr>
+</table>
+
+## Forking (or not)
+
+This repository will contain your secrets such as private keys and access tokens you should make a copy of this repository and make it private.
 Unfortunately you can't use the "Fork" button on GitHub and then make it private.
 
 To create a private fork.
@@ -60,33 +98,6 @@ On the slave:
    * The IP address of the master instance.
   * `repo::ip`
    * The IP address of the repository instance.
-
-## Provisioning
-
-The following EC2 instance types are recommended when deploying to Amazon EC2.<br/>
-They are intended as a guideline for choosing the appropriate parameters when deploying to other platforms.
-
-### Master
-
-<table>
-<tr><td>Memory</td><td>30Gb</td></tr>
-<tr><td>Disk space</td><td>200Gb</td></tr>
-<tr><td><strong>Recommendation</strong></td><td>r3.xlarge</td></tr>
-</table>
-
-### Slave
-
-<table>
-<tr><td>Disk space</td><td>200Gb+</td></tr>
-<tr><td><strong>Recommendation</strong></td><td>c3.large or faster</td></tr>
-</table>
-
-### Repo
-
-<table>
-<tr><td>Disk space</td><td>100Gb</td></tr>
-<tr><td><strong>Recommendation</strong></td><td>t2.medium</td></tr>
-</table>
 
 
 ## Deployment
