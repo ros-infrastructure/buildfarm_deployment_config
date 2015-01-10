@@ -4,7 +4,7 @@ set -o errexit
 
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
-BUILDFARM_DEPLOYMENT_BRANCH=cleanup
+BUILDFARM_DEPLOYMENT_BRANCH=master
 
 if [ ! -d $1 ]; then
   echo "$1 is not a valid subdirectory"

@@ -3,7 +3,7 @@
 This repository is the entry point for deploying servers for the ROS buildfarm.
 It provides the configurations for [buildfarm_deployment](https://github.com/ros-infrastructure/buildfarm_deployment).
 
-After the servers have been provisioned you will then want to see the [ros_buildfarm](https://github.com/ros-infrastructure/ros_buildfarm) project for how to configure jenkins with ROS jobs.
+After the servers have been provisioned you will then want to see the [ros_buildfarm](https://github.com/ros-infrastructure/ros_buildfarm) project for how to configure Jenkins with ROS jobs.
 
 ### Process
 
@@ -12,11 +12,11 @@ To effectively use this there will be three main steps.
  * Fork this repository and update the configuration.
  * Deploy the forked configuration onto the machines.
 
-At the end of this process you will have a Jenkins master, an package repository, and N jenkins-slaves.
+At the end of this process you will have a Jenkins master, a package repository, and N jenkins-slaves.
 
 ## Provisioning
 
-The following EC2 instance types are recommended when deploying to Amazon EC2.<br/>
+The following EC2 instance types are recommended when deploying to Amazon EC2.
 They are intended as a guideline for choosing the appropriate parameters when deploying to other platforms.
 
 ### Master
@@ -43,7 +43,8 @@ They are intended as a guideline for choosing the appropriate parameters when de
 
 ## Forking (or not)
 
-This repository will contain your secrets such as private keys and access tokens you should make a copy of this repository and make it private.
+This repository will contain your secrets such as private keys and access tokens.
+You should make a copy of this repository and make it private.
 Unfortunately you can't use the "Fork" button on GitHub and then make it private.
 
 To create a private fork.
