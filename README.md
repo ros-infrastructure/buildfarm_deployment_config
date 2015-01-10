@@ -33,8 +33,7 @@ On all three:
   * On the master this should be the hashed password from above
   * The easiest way to create this is to setup a jenkins instance. Change the password, then copy the string out of config file on the jenkins server.
  * `autoreconfigure::branch`
-  * Change this if you don't use the master branch on all machines change:
-
+  * If you are forking into a repo and using a different branch name, update the autoreconfigure command to point to the right branch.
 
 On repo:
  * `jenkins-slave::authorized_keys`
