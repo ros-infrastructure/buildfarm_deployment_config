@@ -50,7 +50,7 @@ jenkins::private_ssh_key: |
 
 
 autoreconfigure: false
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard origin/master && ./reconfigure.bash master"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin/master && git reset --hard origin/master && ./reconfigure.bash master"'
 
 
 ### Gthub pupp-request builder settings

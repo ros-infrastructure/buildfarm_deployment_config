@@ -7,6 +7,6 @@ jenkins::slave::masterurl: 'http://master:8080'
 # repo::ip: 54.67.51.1
 
 autoreconfigure: true
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin && git reset --hard origin/master && ./reconfigure.bash slave"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin/master && git reset --hard origin/master && ./reconfigure.bash slave"'
 
 run_squid: true
