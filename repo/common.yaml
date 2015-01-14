@@ -123,4 +123,4 @@ jenkins-slave::reprepro_updater_config: |
 
 
 autoreconfigure: true
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin/master && git reset --hard origin/master && ./reconfigure.bash repo"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash repo"'
