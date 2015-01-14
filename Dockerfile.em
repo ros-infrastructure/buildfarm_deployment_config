@@ -33,11 +33,11 @@ ENV DOCKER_DAEMON_ARGS --storage-driver=devicemapper
 # dmsetup needed to initialize devicemapper
 @[if folder == 'master' ]@
 EXPOSE 8080
-CMD bash -c 'service ntp start && service jenkins start && service jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
+CMD bash -c 'service jenkins start && service jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
 @[end if]@
 @[if folder == 'slave']@
-CMD bash -c 'service ntp start && /etc/init.d/jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
+CMD bash -c '/etc/init.d/jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
 @[end if]
 @[if folder == 'repo']@
-CMD bash -c 'service ntp start && service ssh start && service apache2 start && /etc/init.d/jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
+CMD bash -c 'service ssh start && service apache2 start && /etc/init.d/jenkins-slave start && dmsetup mknodes && /tmp/wrapdocker && while true; do sleep 1; done'
 @[end if]@
