@@ -115,6 +115,7 @@ Once you have customized all the content of
     # Customize this URL for your fork
     git clone https://8d25f41a3ed71b0b9fc571c8a35bcb47fb4f6489@github.com/YOUR_ORG/buildfarm_deployment_config.git
     cd buildfarm_deployment_config
+    ./install_prerequisites.bash
     ./reconfigure.bash master
 
 
@@ -128,6 +129,7 @@ Once you have customized all the content of
     # Customize this URL for your fork
     git clone https://8d25f41a3ed71b0b9fc571c8a35bcb47fb4f6489@github.com/YOUR_ORG/buildfarm_deployment_config.git
     cd buildfarm_deployment_config
+    ./install_prerequisites.bash
     ./reconfigure.bash repo
 
 ### slave deployment
@@ -140,6 +142,7 @@ Once you have customized all the content of
     # Customize this URL for your fork
     git clone https://8d25f41a3ed71b0b9fc571c8a35bcb47fb4f6489@github.com/YOUR_ORG/buildfarm_deployment_config.git
     cd buildfarm_deployment_config
+    ./install_prerequisites.bash
     ./reconfigure.bash slave
 
 ## After Deployment
