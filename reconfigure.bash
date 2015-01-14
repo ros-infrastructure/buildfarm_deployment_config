@@ -29,4 +29,4 @@ cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard origin/$BU
 echo "Running puppet"
 (cd $BUILDFARM_DEPLOYMENT_PATH/$1 && librarian-puppet install --verbose)
 
-puppet apply -v $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp --modulepath=$BUILDFARM_DEPLOYMENT_PATH/$1:$BUILDFARM_DEPLOYMENT_PATH/$1/modules #-l /var/log/puppet.log
+puppet apply -v $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp --modulepath=$BUILDFARM_DEPLOYMENT_PATH/$1:$BUILDFARM_DEPLOYMENT_PATH/$1/modules -l /var/log/puppet.log
