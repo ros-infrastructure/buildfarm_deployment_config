@@ -4,10 +4,10 @@ MAINTAINER "Tully Foote" <tfoote@@osrfoundation.org>
 RUN apt-get update && apt-get dist-upgrade -y
 
 # Prerequisites implicitly installed, but explicit allows docker caching
-RUN apt-get install -y git wget openjdk-7-jdk ca-certificates
+RUN apt-get update && apt-get install -y git wget openjdk-7-jdk ca-certificates
 # installing here to leverage docker caching (will be enforced by puppet later)
-RUN apt-get install -y curl python3-yaml python3-empy apt-transport-https bzr mercurial
-RUN apt-get install -y apparmor cgroup-lite ntp
+RUN apt-get update && apt-get install -y curl python3-yaml python3-empy apt-transport-https bzr mercurial
+RUN apt-get update && apt-get install -y apparmor cgroup-lite ntp
 
 # Docker specific changes.
 
