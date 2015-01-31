@@ -16,8 +16,16 @@ credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 
 jenkins::nodeMonitor::minimum_disk_space: 5G
 
-jenkins::authorized_keys: |
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2NOaRsdZqqTrCwNR77AQIqwAPYkDfiL1Ou7Pi/qaW9S7UU0Y1KAQ6kWhgJc9RtOhbZKGHbFTqSLT4235TkmPvlZbV2bK8ZViBmqQ3r8vDMhC/+p9Ec9SP8sjv6JcIEWOy5zXPnB3OnHHWXmvZP47rjJY0l76F71fZt3vlvyjz7IrikULmuKcyrE+zulmbSTtfGZhxQRPxZDO/RiOemCPsYo5u/rUMjWH+CkEI0swQlM6QIvjWdfYtNwQT9yo53MXFy5jodhW4YOOncKE4RMOI9Lmu6jE0GmdmSEv486R4ot6iWanx2hk/46zlmX1kSKGWObRdH57H/xIAxvw+PiTd tfoote@yeti
+ssh_keys:
+    'tfoote@zug':
+        key: AAAAB3NzaC1yc2EAAAABIwAAAQEApDU8Bxx4a51OnPms2Kuw/9K6RA+Mjp1lGAn8GpKs1Mr2SOZattPd085v4dgc+Ydnud57Pk+FkuyOWvmd07AjQ+h2+OH9pE+pMVVWXddz36svQeVb0/yvgbCiMxPqQi//ctQmJmPEAuF6gs4imMSHTtmLdWYzqVGkJ4TZwpyERC/c7TyfVZ7zvkNZ2+3pcceiS5F86M/CNgRBvdLQ9jk6x3S93JR0V49xkxRUE428qFzuRggv8m//5hrgXCyty/ZUQlTI5CcwKsedQLcPtOjTTakCw9o7x0ShXYWKD7MelYkUPKbE0H4J87AVm9H9SGs02WsuAbOL7NacboMGCxIcsw==
+        type: ssh-rsa
+        user: root
+    'tfoote@yeti':
+        key: AAAAB3NzaC1yc2EAAAADAQABAAABAQC2NOaRsdZqqTrCwNR77AQIqwAPYkDfiL1Ou7Pi/qaW9S7UU0Y1KAQ6kWhgJc9RtOhbZKGHbFTqSLT4235TkmPvlZbV2bK8ZViBmqQ3r8vDMhC/+p9Ec9SP8sjv6JcIEWOy5zXPnB3OnHHWXmvZP47rjJY0l76F71fZt3vlvyjz7IrikULmuKcyrE+zulmbSTtfGZhxQRPxZDO/RiOemCPsYo5u/rUMjWH+CkEI0swQlM6QIvjWdfYtNwQT9yo53MXFy5jodhW4YOOncKE4RMOI9Lmu6jE0GmdmSEv486R4ot6iWanx2hk/46zlmX1kSKGWObRdH57H/xIAxvw+PiTd
+        type: ssh-rsa
+        user: jenkins-slave
+        require: User[jenkins-slave]
 
 jenkins::private_ssh_key: |
     -----BEGIN RSA PRIVATE KEY-----
