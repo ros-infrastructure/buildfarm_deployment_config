@@ -7,7 +7,7 @@ RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get update && apt-get install -y git wget openjdk-7-jdk ca-certificates
 # installing here to leverage docker caching (will be enforced by puppet later)
 RUN apt-get update && apt-get install -y curl python3-yaml python3-empy apt-transport-https bzr mercurial
-RUN apt-get update && apt-get install -y apparmor cgroup-lite ntp
+RUN apt-get update && apt-get install -y apparmor cgroup-lite ntp openssh-server python-yaml python-configparser
 
 # Docker specific changes.
 
