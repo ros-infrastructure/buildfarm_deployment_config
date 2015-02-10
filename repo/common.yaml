@@ -238,6 +238,15 @@ jenkins-slave::reprepro_config:
             component: main
             architectures: [i386, amd64, source]
             filter_formula: Package (% *openni2* ) | Package (% *pcl*-1.7* )
+    '/home/jenkins-slave/reprepro_config/pcl_utopic.yaml':
+        ensure: 'present'
+        content: |
+            name: pclppa_utopic
+            method: http://ppa.launchpad.net/v-launchpad-jochen-sprickerhof-de/pcl/ubuntu
+            suites: [utopic]
+            component: main
+            architectures: [i386, amd64, source]
+            filter_formula: Package (% *pcl*1.7* )
     '/home/jenkins-slave/reprepro_config/gazebo2.yaml':
         ensure: 'present'
         content: |
