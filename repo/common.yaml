@@ -264,7 +264,7 @@ jenkins-slave::reprepro_config:
             #method: http://ppa.launchpad.net/openrave/release/ubuntu
             #suites: [lucid, maverick, natty, oneiric, precise, quantal, raring, saucy, trusty]
             method: http://ppa.launchpad.net/openrave/testing/ubuntu
-            suites: [saucy, trusty]
+            suites: [saucy, trusty, utopic, vivid]
             component: main
             architectures: [i386, amd64, source]
             filter_formula: Package (% *collada-dom* )
