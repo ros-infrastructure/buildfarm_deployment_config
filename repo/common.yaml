@@ -247,6 +247,17 @@ jenkins-slave::reprepro_config:
             component: main
             architectures: [i386, amd64, source]
             filter_formula: Package (% *pcl*1.7* )
+    '/home/jenkins-slave/reprepro_config/gazebo5.yaml':
+        ensure: 'present'
+        content: |
+            name: gazebo5_import
+            method: http://packages.osrfoundation.org/gazebo/ubuntu
+            suites: [trusty, utopic]
+            # TODO ADD when available upstream, vivid]
+            component: main
+            architectures: [i386, amd64, source]
+            filter_formula: Package (% gazebo5-dbg ) | Package (% gazebo5 ) | Package (% libsdformat2) | Package (% libsdformat2-dbg) | Package (% libsdformat2-dev)
+
     '/home/jenkins-slave/reprepro_config/gazebo2.yaml':
         ensure: 'present'
         content: |
