@@ -252,8 +252,7 @@ jenkins-slave::reprepro_config:
         content: |
             name: gazebo5_import
             method: http://packages.osrfoundation.org/gazebo/ubuntu
-            suites: [trusty, utopic]
-            # TODO ADD when available upstream, vivid]
+            suites: [trusty, utopic, vivid]
             component: main
             architectures: [i386, amd64, source]
             filter_formula: Package (% gazebo5-dbg ) | Package (% gazebo5 ) | Package (% libsdformat2) | Package (% libsdformat2-dbg) | Package (% libsdformat2-dev)
