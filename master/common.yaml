@@ -69,3 +69,10 @@ jenkins::github::token: XXXYYYZZZ
 
 # default value: https://api.github.com
 # jenkins::github::api_url: 'https://api.github.com'
+
+# classes to be pulled in via hiera_include classes
+# classes:
+#   - nrsysmond
+
+# License key required for nrsysmond class above
+# nrsysmond::license_key: xxxyyyyzzzzTODO_REQUIRED

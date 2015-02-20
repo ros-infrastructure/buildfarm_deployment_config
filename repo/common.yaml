@@ -304,3 +304,10 @@ jenkins-slave::reprepro_config:
 
 autoreconfigure: true
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash repo"'
+
+# classes to be pulled in via hiera_include classes
+# classes:
+#   - nrsysmond
+
+# License key required for nrsysmond class above
+# nrsysmond::license_key: xxxyyyyzzzzTODO_REQUIRED
