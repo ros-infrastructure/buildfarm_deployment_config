@@ -14,7 +14,7 @@ credentials::jenkins-slave::username: jenkins-slave
 credentials::jenkins-slave::id: 1e7d4696-7fd4-4bc6-8c87-ebc7b6ce16e5
 credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 
-jenkins::nodeMonitor::minimum_disk_space: 5G
+jenkins::nodeMonitor::minimum_disk_space: 10G
 
 ssh_keys:
     'tfoote@zug':
