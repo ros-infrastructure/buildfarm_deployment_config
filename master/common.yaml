@@ -66,6 +66,11 @@ jenkins::private_ssh_key: |
 autoreconfigure: false
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash master"'
 
+### Optional customization urls for uploading docs (should match urls in the)
+### These should match the credentials in the ros_buildfarm_config doc-build.yaml
+# upload::docs::host: repo
+# upload::docs::user: jenkins-slave
+# upload::docs::root: '/var/repos/docs'
 
 ### Gthub pupp-request builder settings
 
