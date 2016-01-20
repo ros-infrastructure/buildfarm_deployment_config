@@ -12,6 +12,11 @@ ssh_keys:
         type: ssh-rsa
         user: root
 
+# Known hosts to use for things like uploading results.
+ssh_host_keys:
+  repo: repo ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
+  54.183.65.232: 54.183.65.232 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
+
 autoreconfigure: true
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash slave"'
 
