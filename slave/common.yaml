@@ -21,6 +21,8 @@ autoreconfigure: true
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash slave"'
 
 run_squid: false
+# squid-in-a-can::max_cache_size: 5000
+# squid-in-a-can::max_cache_object: 1000
 
 # classes to be pulled in via hiera_include classes
 # classes:
