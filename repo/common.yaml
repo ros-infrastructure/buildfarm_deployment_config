@@ -2,7 +2,7 @@ jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
 jenkins::slave::masterurl: 'http://master:8080'
 
-# master::ip: 54.67.30.249
+master::ip: 192.168.100.231
 
 jenkins-slave::gpg_key_id: 'E5944336'
 jenkins-slave::gpg_private_key: |
