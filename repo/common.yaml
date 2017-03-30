@@ -1,6 +1,6 @@
 jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
-jenkins::slave::masterurl: 'http://master:8080'
+jenkins::slave::masterurl: 'http://192.168.100.231:8080'
 
 master::ip: 192.168.100.231
 
