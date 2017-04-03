@@ -4,7 +4,7 @@ set -o errexit
 
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/nuclearsandwich/buildfarm_deployment.git
-BUILDFARM_DEPLOYMENT_BRANCH=nuclearsandwich-testing
+BUILDFARM_DEPLOYMENT_BRANCH=xenialize
 if [ ! -d $1 ]; then
   echo "$1 is not a valid subdirectory"
   return 1
