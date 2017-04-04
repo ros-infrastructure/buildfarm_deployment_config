@@ -1,10 +1,10 @@
-jenkins::slave::ui_user: 'admin'
-jenkins::slave::ui_pass: 'changeme'
-jenkins::slave::masterurl: 'http://192.168.100.231:8080'
-jenkins::slave::num_executors: 2
+jenkins::agent::ui_user: 'admin'
+jenkins::agent::ui_pass: 'changeme'
+jenkins::agent::masterurl: 'http://master:8080'
+jenkins::agent::num_executors: 2
 
-master::ip: 192.168.100.231
-repo::ip: 192.168.254.194
+master::ip: 192.168.100.212
+#repo::ip: 192.168.254.194
 
 ssh_keys:
     'tfoote@zug':
@@ -17,7 +17,7 @@ ssh_host_keys:
   repo: repo ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
   54.183.65.232: 54.183.65.232 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
 
-autoreconfigure: true
+autoreconfigure: false
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash slave"'
 
 run_squid: false
