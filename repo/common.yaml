@@ -143,7 +143,7 @@ jenkins-slave::reprepro_config:
             verify_release: blindtrust
 
 
-autoreconfigure: true
+autoreconfigure: false
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash repo"'
 
 # classes to be pulled in via hiera_include classes
