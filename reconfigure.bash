@@ -29,6 +29,7 @@ echo "Running librarian-puppet"
 (cd $BUILDFARM_DEPLOYMENT_PATH/ && librarian-puppet install --verbose)
 echo "Running puppet"
 puppet apply --verbose \
+  --parser future \
   --modulepath=$BUILDFARM_DEPLOYMENT_PATH/$1:$BUILDFARM_DEPLOYMENT_PATH/modules \
   --logdest /var/log/puppet.log \
   $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp \
