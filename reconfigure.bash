@@ -28,4 +28,8 @@ cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard origin/$BU
 echo "Running librarian-puppet"
 (cd $BUILDFARM_DEPLOYMENT_PATH/ && librarian-puppet install --verbose)
 echo "Running puppet"
-puppet apply -v $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp --modulepath=$BUILDFARM_DEPLOYMENT_PATH/$1:$BUILDFARM_DEPLOYMENT_PATH/modules -l /var/log/puppet.log || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
+puppet apply --verbose \
+  --modulepath=$BUILDFARM_DEPLOYMENT_PATH/$1:$BUILDFARM_DEPLOYMENT_PATH/modules \
+  --logdest /var/log/puppet.log \
+  $BUILDFARM_DEPLOYMENT_PATH/$1/manifests/site.pp \
+  || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
