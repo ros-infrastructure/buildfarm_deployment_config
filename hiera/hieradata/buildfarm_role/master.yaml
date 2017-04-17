@@ -2,6 +2,9 @@ credentials::jenkins-slave::username: jenkins-agent
 credentials::jenkins-slave::id: 1e7d4696-7fd4-4bc6-8c87-ebc7b6ce16e5
 credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 
+user::admin::name: admin
+user::admin::password_hash: '#jbcrypt:$2a$10$vmmqzRmcDHj1t9Ajgq5edekPD8cbpD./pBSGcYzia.OsIroOKjghm'
+
 # Uncomment below to increase the memory available for Jenkins
 # This is highly recommended for larger deployments
 # Don't use more than 75% of your RAM for Jenkins
