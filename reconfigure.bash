@@ -29,7 +29,7 @@ echo "Running librarian-puppet"
 echo "Running puppet"
 env FACTER_buildfarm_role="$buildfarm_role" puppet apply --verbose \
   --parser future \
-  --modulepath=$BUILDFARM_DEPLOYMENT_PATH \
+  --modulepath="${BUILDFARM_DEPLOYMENT_PATH}/modules" \
   --logdest /var/log/puppet.log \
   -e "include role::buildfarm::${buildfarm_role}" \
   || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
