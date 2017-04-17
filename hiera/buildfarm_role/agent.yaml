@@ -1,10 +1,4 @@
-jenkins::slave::ui_user: 'admin'
-jenkins::slave::ui_pass: 'changeme'
-jenkins::slave::masterurl: 'http://master:8080'
 jenkins::slave::num_executors: 2
-
-master::ip: 192.168.100.212
-#repo::ip: 192.168.254.194
 
 ssh_keys:
     'tfoote@zug':
