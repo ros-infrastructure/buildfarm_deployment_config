@@ -12,6 +12,7 @@ user::admin::password_hash: '#jbcrypt:$2a$10$vmmqzRmcDHj1t9Ajgq5edekPD8cbpD./pBS
 
 jenkins::nodeMonitor::minimum_disk_space: 10G
 jenkins::lts: true
+jenkins::slave::install_java: false
 
 ssh_keys:
     'tfoote@zug':
