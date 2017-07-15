@@ -1,26 +1,18 @@
-jenkins::slave::num_executors: 2
+jenkins::slave::executors: 4
+jenkins::slave::labels: buildagent
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: agent
 
-ssh_keys:
-    'tfoote@zug':
-        key: AAAAB3NzaC1yc2EAAAABIwAAAQEApDU8Bxx4a51OnPms2Kuw/9K6RA+Mjp1lGAn8GpKs1Mr2SOZattPd085v4dgc+Ydnud57Pk+FkuyOWvmd07AjQ+h2+OH9pE+pMVVWXddz36svQeVb0/yvgbCiMxPqQi//ctQmJmPEAuF6gs4imMSHTtmLdWYzqVGkJ4TZwpyERC/c7TyfVZ7zvkNZ2+3pcceiS5F86M/CNgRBvdLQ9jk6x3S93JR0V49xkxRUE428qFzuRggv8m//5hrgXCyty/ZUQlTI5CcwKsedQLcPtOjTTakCw9o7x0ShXYWKD7MelYkUPKbE0H4J87AVm9H9SGs02WsuAbOL7NacboMGCxIcsw==
-        type: ssh-rsa
-        user: root
-
-# Known hosts to use for things like uploading results.
+# Known hosts to add to the agent user.
+# Necessary to avoid build failures requiring interactive approval of a new
+# host.
+# You should definitely add the host key for your `repo` machine and any
+# other machines you will connect to during builds: a documentation host
+# for example.
 ssh_host_keys:
   repo: repo ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
-  54.183.65.232: 54.183.65.232 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
 
-autoreconfigure: false
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash slave"'
-
-run_squid: false
-# squid-in-a-can::max_cache_size: 5000
+# Enable squid reverse proxy to save bandwidth redownloading packages.
+run_squid: true
+squid-in-a-can::max_cache_size: 50000
 # squid-in-a-can::max_cache_object: 1000
-
-# classes to be pulled in via hiera_include classes
-# classes:
-#   - nrsysmond
-
-# License key required for nrsysmond class above
-# nrsysmond::license_key: xxxyyyyzzzzTODO_REQUIRED
