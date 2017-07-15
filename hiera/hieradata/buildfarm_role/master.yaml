@@ -1,30 +1,27 @@
+user::admin::name: admin
+user::admin::password_hash: '#jbcrypt:$2a$10$vmmqzRmcDHj1t9Ajgq5edekPD8cbpD./pBSGcYzia.OsIroOKjghm'
+
 credentials::jenkins-slave::username: jenkins-agent
 credentials::jenkins-slave::id: 1e7d4696-7fd4-4bc6-8c87-ebc7b6ce16e5
 credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 
-user::admin::name: admin
-user::admin::password_hash: '#jbcrypt:$2a$10$vmmqzRmcDHj1t9Ajgq5edekPD8cbpD./pBSGcYzia.OsIroOKjghm'
-
 # Uncomment below to increase the memory available for Jenkins
 # This is highly recommended for larger deployments
 # Don't use more than 75% of your RAM for Jenkins
-# jenkins_java_args: '-XX:MaxPermSize=512m -Xmx20g'
+# Used in modules/jenkins_files/templates/etc_default_jenkins.erb
+jenkins_java_args: '-XX:MaxPermSize=512m -Xmx20g'
 
-jenkins::nodeMonitor::minimum_disk_space: 10G
+# Used in modules/jenkins_files/templates/nodeMonitors.xml.erb
+jenkins::nodeMonitor::minimum_disk_space: 50G
+
+# Jenkins component module parameters.
 jenkins::lts: true
+jenkins::version: '2.60.1'
+jenkins::slave::executors: 1
 jenkins::slave::install_java: false
-
-ssh_keys:
-    'tfoote@zug':
-        key: AAAAB3NzaC1yc2EAAAABIwAAAQEApDU8Bxx4a51OnPms2Kuw/9K6RA+Mjp1lGAn8GpKs1Mr2SOZattPd085v4dgc+Ydnud57Pk+FkuyOWvmd07AjQ+h2+OH9pE+pMVVWXddz36svQeVb0/yvgbCiMxPqQi//ctQmJmPEAuF6gs4imMSHTtmLdWYzqVGkJ4TZwpyERC/c7TyfVZ7zvkNZ2+3pcceiS5F86M/CNgRBvdLQ9jk6x3S93JR0V49xkxRUE428qFzuRggv8m//5hrgXCyty/ZUQlTI5CcwKsedQLcPtOjTTakCw9o7x0ShXYWKD7MelYkUPKbE0H4J87AVm9H9SGs02WsuAbOL7NacboMGCxIcsw==
-        type: ssh-rsa
-        user: root
-    # TODO Restore this key for jenkins agent user when possible.
-    # 'tfoote@yeti':
-    #     key: AAAAB3NzaC1yc2EAAAADAQABAAABAQC2NOaRsdZqqTrCwNR77AQIqwAPYkDfiL1Ou7Pi/qaW9S7UU0Y1KAQ6kWhgJc9RtOhbZKGHbFTqSLT4235TkmPvlZbV2bK8ZViBmqQ3r8vDMhC/+p9Ec9SP8sjv6JcIEWOy5zXPnB3OnHHWXmvZP47rjJY0l76F71fZt3vlvyjz7IrikULmuKcyrE+zulmbSTtfGZhxQRPxZDO/RiOemCPsYo5u/rUMjWH+CkEI0swQlM6QIvjWdfYtNwQT9yo53MXFy5jodhW4YOOncKE4RMOI9Lmu6jE0GmdmSEv486R4ot6iWanx2hk/46zlmX1kSKGWObRdH57H/xIAxvw+PiTd
-    #     type: ssh-rsa
-    #     user: jenkins-slave
-    #     require: User[jenkins-slave]
+jenkins::slave::labels: agent_on_master
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: agent_on_master
 
 jenkins::private_ssh_key: |
     -----BEGIN RSA PRIVATE KEY-----
@@ -55,28 +52,21 @@ jenkins::private_ssh_key: |
     QhbS+sZ+JcyNMAHEOkHkEN/eS930FnCyeLQwYEwJAkiYl7vkVuXXzAA=
     -----END RSA PRIVATE KEY-----
 
-
-autoreconfigure: false
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin master && git reset --hard origin/master && ./reconfigure.bash master"'
-
-### Optional customization urls for uploading docs (should match urls in the)
-### These should match the credentials in the ros_buildfarm_config doc-build.yaml
+# Optional customization urls for uploading docs.
+# These should match the credentials in the ros_buildfarm_config doc-build.yaml.
 # upload::docs::host: repo
-# upload::docs::user: jenkins-slave
+# upload::docs::user: jenkins-agent
 # upload::docs::root: '/var/repos/docs'
 
-### Gthub pupp-request builder settings
-
-# Required
-jenkins::github::username: rosbuild
-jenkins::github::token: XXXYYYZZZ
-
-# default value: https://api.github.com
+### GitHub pull-request builder settings
+#
+# Used in modules/jenkins_files/templates/com.cloudbees.jenkins.GitHubPushTrigger.xml.erb
+#
+# A GitHub username and token are required.
+# TODO (Steven!) what permissions on the token?
+jenkins::github::username: ros-pull-request-builder
+jenkins::github::token: somegithubtoken
+#
+# default value of https://api.github.com can be overridden for GitHub Enterprise.
 # jenkins::github::api_url: 'https://api.github.com'
 
-# classes to be pulled in via hiera_include classes
-# classes:
-#   - nrsysmond
-
-# License key required for nrsysmond class above
-# nrsysmond::license_key: xxxyyyyzzzzTODO_REQUIRED
