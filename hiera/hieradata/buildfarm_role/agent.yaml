@@ -10,7 +10,7 @@ jenkins::slave::slave_name: agent
 # other machines you will connect to during builds: a documentation host
 # for example.
 ssh_host_keys:
-  repo: repo ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFc/Nq1TAnCl4XC4nFl6QNOLcJLw5vY0lkvMlVULn8jkQPn3iUy59Q2fja+h4lmQlD17iSY3o4luHUYkYKAdHcI=
+  repo: repo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+bpD1Hf9LB+VFN6V6xdRsTi05gPHd0l7LhWbDZpAQM
 
 # Enable squid reverse proxy to save bandwidth redownloading packages.
 run_squid: true
