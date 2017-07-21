@@ -8,8 +8,8 @@ jenkins::slave::ui_pass: 'changeme'
 # This should be unchanged so that the masterurl always uses the hosts entry to reach master.
 jenkins::slave::masterurl: 'http://master:8080'
 
-master::ip: 192.168.122.173
-repo::ip: 192.168.122.102
+master::ip: 172.30.1.145
+repo::ip: 172.30.1.69
 
 # SSH keys to be added to the system.
 # The example public key should be changed but the private key has been deliberately deleted rather than leaked.
@@ -25,7 +25,7 @@ ssh_keys:
 # any configuration changes made since provisioning.
 autoreconfigure: false
 # Pay special attention to the Git branch name that appears twice in the invocation below.
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin production-xenial && git reset --hard origin/production-xenial && ./reconfigure.bash"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin xenialize && git reset --hard origin/xenialize && ./reconfigure.bash"'
 
 # Classes to be pulled in via hiera_include classes.
 classes:
