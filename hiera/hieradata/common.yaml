@@ -28,7 +28,7 @@ autoreconfigure: false
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin xenialize && git reset --hard origin/xenialize && ./reconfigure.bash"'
 
 # Classes to be pulled in via hiera_include classes.
-classes:
+#classes:
     # Enables the New Relic sysmon daemon.
     # A license key / api key is required to use it.
     #- nrsysmond
