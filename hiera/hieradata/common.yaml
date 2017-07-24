@@ -4,7 +4,6 @@
 # If you use the GitHub authentication plugin with Jenkins you will want to set this to a GitHub username and access token.
 jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
-jenkins::swarm_version: '3.4'
 
 # This should be unchanged so that the masterurl always uses the hosts entry to reach master.
 jenkins::slave::masterurl: 'http://master:8080'
