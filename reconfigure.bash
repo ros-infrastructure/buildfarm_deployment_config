@@ -5,12 +5,25 @@ set -o errexit
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/nuclearsandwich/buildfarm_deployment.git
 BUILDFARM_DEPLOYMENT_BRANCH=xenialize
-if [ -z $1 ]; then
-  echo "No role specified."
-  return 1
-fi
 
-buildfarm_role="$1"
+script_dir="$(dirname $0)"
+
+# Check if a role file exists for the current machine.
+if [ -f "${script_dir}/role" ]; then
+  buildfarm_role=$(cat "${script_dir}/role")
+  if [ $1 != $buildfarm_role ]; then
+    echo "ERROR: this machine was previously provisioned as ${buildfarm_role}"
+    echo "  To change role to $1 please delete the 'role' file and rerun this command."
+    exit 1
+  fi
+else
+  if [ -z $1 ]; then
+    echo "No role specified."
+    exit 1
+  fi
+  buildfarm_role="$1"
+  echo $buildfarm_role > "${script_dir}/role"
+fi
 
 if [ ! -d /root/buildfarm_deployment ]; then
   echo "/root/buildfarm_deplyment did not exist, cloning."
