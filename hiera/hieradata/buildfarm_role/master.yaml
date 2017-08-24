@@ -16,7 +16,7 @@ jenkins::nodeMonitor::minimum_disk_space: 50G
 
 # Jenkins component module parameters.
 jenkins::lts: true
-jenkins::version: '2.60.2'
+jenkins::version: '2.60.3'
 jenkins::slave::executors: 1
 jenkins::slave::install_java: false
 jenkins::slave::labels: agent_on_master
