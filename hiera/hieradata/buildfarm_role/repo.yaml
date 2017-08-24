@@ -1,7 +1,7 @@
 jenkins::slave::executors: 1
 jenkins::slave::labels: building_repository
 jenkins::slave::slave_mode: exclusive
-jenkins::slave::slave_name: buildling_repository
+jenkins::slave::slave_name: building_repository
 
 jenkins-agent::gpg_key_id: 'E5944336'
 jenkins-agent::gpg_private_key: |
