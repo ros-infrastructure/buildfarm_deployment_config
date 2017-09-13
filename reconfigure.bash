@@ -3,8 +3,8 @@
 set -o errexit
 
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
-BUILDFARM_DEPLOYMENT_URL=https://github.com/nuclearsandwich/buildfarm_deployment.git
-BUILDFARM_DEPLOYMENT_BRANCH=xenialize
+BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
+BUILDFARM_DEPLOYMENT_BRANCH=xenial
 
 script_dir="$(dirname $0)"
 
