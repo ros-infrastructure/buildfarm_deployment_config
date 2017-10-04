@@ -5,4 +5,5 @@
   :datadir: /etc/puppet/hieradata
 :hierarchy:
   - "node/%{::fqdn}"
+  - "buildfarm_role/%{::buildfarm_role}"
   - common
