@@ -25,7 +25,7 @@ ssh_keys:
 # any configuration changes made since provisioning.
 autoreconfigure: false
 # Pay special attention to the Git branch name that appears twice in the invocation below.
-autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin xenialize && git reset --hard origin/xenialize && ./reconfigure.bash"'
+autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin standalone-host && git reset --hard origin/standalone-host && ./reconfigure.bash"'
 
 # Classes to be pulled in via hiera_include classes.
 #classes:
