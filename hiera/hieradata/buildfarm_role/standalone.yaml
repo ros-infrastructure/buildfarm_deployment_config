@@ -1,2 +1,226 @@
 master::ip: 127.0.0.1
 repo::ip: 127.0.0.1
+jenkins::slave::executors: 1
+jenkins::slave::labels: buildagent
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: agent
+
+# Known hosts to add to the agent user.
+# Necessary to avoid build failures requiring interactive approval of a new
+# host.
+# You should definitely add the host key for your `repo` machine and any
+# other machines you will connect to during builds: a documentation host
+# for example.
+ssh_host_keys:
+  repo: repo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+bpD1Hf9LB+VFN6V6xdRsTi05gPHd0l7LhWbDZpAQM
+
+# Enable squid reverse proxy to save bandwidth redownloading packages.
+run_squid: true
+squid-in-a-can::max_cache_size: 50000
+# squid-in-a-can::max_cache_object: 1000
+
+user::admin::name: admin
+user::admin::password_hash: '#jbcrypt:$2a$10$vmmqzRmcDHj1t9Ajgq5edekPD8cbpD./pBSGcYzia.OsIroOKjghm'
+
+credentials::jenkins-slave::username: jenkins-agent
+credentials::jenkins-slave::id: 1e7d4696-7fd4-4bc6-8c87-ebc7b6ce16e5
+credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
+
+# Uncomment below to increase the memory available for Jenkins
+# This is highly recommended for larger deployments
+# Don't use more than 75% of your RAM for Jenkins
+# Used in modules/jenkins_files/templates/etc_default_jenkins.erb
+jenkins_java_args: '-XX:UseG1GC -Xmx5g'
+
+# Used in modules/jenkins_files/templates/nodeMonitors.xml.erb
+jenkins::nodeMonitor::minimum_disk_space: 50G
+
+# Jenkins component module parameters.
+jenkins::lts: true
+jenkins::version: '2.60.3'
+jenkins::slave::executors: 1
+jenkins::slave::install_java: false
+jenkins::slave::labels: agent_on_master
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: agent_on_master
+
+jenkins::private_ssh_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpQIBAAKCAQEAtjTmkbHWaqk6wsDUe+wECKsAD2JA34i9Truz4v6mlvUu1FNG
+    NSgEOpFoYCXPUbToW2Shh2xU6ki0+Nt+U5Jj75WW1dmyvGVYgZqkN6/LwzIQv/qf
+    RHPUj/LI7+iXCBFjsuc1z5wdzpxx1l5r2T+O64yWNJe+he9X2bd75b8o8+yK4pFC
+    5rinMqxPs7pZm0k7XxmYcUET8WQzv0Yjnpgj7GKObv61DI1h/gpBCNLMEJTOkCL4
+    1nX2LTcEE/cqOdzFxcuY6HYVuGDjp3ChOETDiPS5ruoxNBpnZkhL+POkeKLeolmp
+    8doZP+Os5Zl9ZEihljm0XR+ex/8SAMb8Pj4k3QIDAQABAoIBAQCKBgbHRS0EvU86
+    6nHLsdzYaBjyjl5QNrgY5U1+XaL6ZZ7kznQ3nimd6Dpl4x5qaZ0+ZjuKZ4DnvM4C
+    WdsXGaTEf8+0DWY9GpRyER/m4y96nPldRE/Tvd6+cI7QVaPbQ7j/c/AqZbuaoJ4H
+    Yp1WA7STMHs0OeLkeItW7IxZXHZ8V2LhZeCCGy3UYlHYeSQ5K0NE/Ry3MH1iySIs
+    V0XvGgrNaT+Os1DXBtKCUQC8PaT1z9qq53qAceOhj8h1lrr/NubCgAyJHfL57ry1
+    KkeEyp+yTePqyIX/tBwN8BKLdVvCFp3VnxRWE3E0qvXKtVm8MRHR3C9mSxQrKMsz
+    PdjEhvkBAoGBAODDHrpv/Q2xglvHcegCZNte9WDNsadJJcurWf7KuBg79gbXK8Sw
+    PKMSMIwwQlcY3x4ciav3rde5INZBgpdN1BqGtE5EHt/rqhkBrOraJP4KlgqQnVdn
+    SBAFvkrr7RRiV2U4icD1ZRL0mHNawSlcPTZ9oP++U+AaCAnJVTE2PDEdAoGBAM+H
+    rzTMQG3bKAND1P5xfjm0zSjnqEwGVXOgTcHRmeqOOu2pzkT2n6TzrkBbWXc78rhv
+    a9UTz2+QjIszhb9goBkfGF5+enMwksOikUWjfCZPNFeLmPQD34Hko/hmh4n1b1lm
+    XOG8M6R3q7kmS6dRdyfG4TDR6oMQDzRWHFJ7tTbBAoGASkw1vCuI2x3ymaQ0Yx1n
+    eZzKQFW+hC4J8GmUNkWM1XX8vgYi0cHwSXeZ1L2fMGtoVevZFp+pN8ZatHizUpDH
+    rH0a3URncF3WvK1xG7FAyTl2n8duO5ZInANKBDo5BKP9f9hQsRhtcPap7nfxolp7
+    YaflsKSZ1VrFjXagUsQ64YECgYEAhDzRR7Ne2qFrPalbb0aiR+MNV6NFeiwPBz5+
+    TaJhkTRQGGC7LvZ3g4RC5H9Q4skwQJW/AGc/JrfU1l5eOzQ2z8sgnBW7sOqimkZc
+    iyNBWKffkmlBbTuKkBpA4WdztlTOPwka5jwmLAaVRcVBL7yZUJ9JnvIjnJ//EDpO
+    kcCCGAECgYEA1wiLyDJ/5OuKFRyE5Y1MJJJBg3M49YWxZl3RtVzaTHl3WBUbL52I
+    SRbOij6xH8URigzwKGV+KubshUC5P3TQxc6AkUpIRM6iWBpz1yzb8o5PdrTQ4VVp
+    QhbS+sZ+JcyNMAHEOkHkEN/eS930FnCyeLQwYEwJAkiYl7vkVuXXzAA=
+    -----END RSA PRIVATE KEY-----
+
+# Optional customization urls for uploading docs.
+# These should match the credentials in the ros_buildfarm_config doc-build.yaml.
+# upload::docs::host: repo
+# upload::docs::user: jenkins-agent
+# upload::docs::root: '/var/repos/docs'
+
+### GitHub pull-request builder settings
+#
+# Used in modules/jenkins_files/templates/com.cloudbees.jenkins.GitHubPushTrigger.xml.erb
+#
+# A GitHub username and token are required.
+# TODO (Steven!) what permissions on the token?
+jenkins::github::username: ros-pull-request-builder
+jenkins::github::token: somegithubtoken
+#
+# default value of https://api.github.com can be overridden for GitHub Enterprise.
+# jenkins::github::api_url: 'https://api.github.com'
+#
+jenkins::slave::executors: 1
+jenkins::slave::labels: building_repository
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: building_repository
+
+jenkins-agent::gpg_key_id: 'E5944336'
+jenkins-agent::gpg_private_key: |
+    -----BEGIN PGP PRIVATE KEY BLOCK-----
+    Version: GnuPG v1
+
+    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
+    =Q44B
+    -----END PGP PRIVATE KEY BLOCK-----
+jenkins-agent::gpg_public_key: |
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
+    Version: GnuPG v1
+
+    mQENBFRj9wABCADBxfCOCydUqsXS4JlhytBZroc7129AGHTn62xanKYXN1ihB5Ay
+    pLGJcz22MHnCegcCUA6HXOaOdLJTg8PZp/ncOGcLjRsmy+tkQzC0aX0yKhH1bKxe
+    TKe2/Kdk7y8SwW3Uw2r+R/d36DUoCTCRmibScIM4clD4eOOz/FZEVbnZuGmEKw1z
+    O5oMDgerEm8ou4s45RwIfTyt2UodxhLpjBWvuMKhKvc8JlpiZD/TMj+/uMhDe/eL
+    ijG+tMi9vUdo1B4xsDlLW7GFCmYXMBzhuO30TaC9PSE2e2cQS1jWX4113l32oXdg
+    IP8Nl1yxFGDPAKLQe+HNt7gyhoEkPP6tUKARABEBAAG0H1JPUyBSZWxlYXNlIDxu
+    b29uZUBleGFtcGxlLmNvbT6JATgEEwECACIFAlRj9wACGwMGCwkIBwMCBhUIAgkK
+    CwQWAgMBAh4BAheAAAoJEIsjFZ/llEM2cx8H/Ru8upiYAhwphPxOPEvkLfqZDEjI
+    LrFg4A5WhUvhMFpRzdOUovVCM9D73rtZEsaQgmtPIs1Mdp8M44E5G7sV9Zjp/4zf
+    T/vgopfBjG9M3foWkhWyupFlHm7AC9tv+3+vmzW5uzvrk/tRqirpU/5lm+wEE+Xq
+    Jy2UlkGj8o1WZDJXd0SoJF/MRXBwOa9kkpxNMLrOGSSra9GzBsIO9570QAUOD8pA
+    OKD+5pjDIdnySDpfBNIhv029dBhSKZg5sTzZr3dxise759l0W+8i1H6GUvxWe4km
+    8v7YDPyajsHs43ImbZQrMcr5l1TAVk8OBSLqGmtiLasRFnHQUxQyJNyo3gS5AQ0E
+    VGP3AAEIAM+qLZEg9qagVbm/FvS1wGlQVFgokjWGIZCxbzC2mNNAmyNXvOeCD899
+    N0xnprYd131Ocg53tllkYeSyUNBfO0f/CI0Msh+hzDivT0HqJxmxZGWHrm35to4e
+    LSIAOmoxDNXQwpC4ZNTUPZNNFdCfU0tGGXnA66BYpilfEv20eBgk1x+pu1vJxne1
+    /SPUwZAiiWb2ydRHvLJErUTcXGKn5UG4PlUAOCCoBC3195TIevlO9hlvtLkW9olu
+    hnWNtJJHfbjtwoQC+z5Kn4miFl/FkXAp8YfYSCF3glXAXY08dLIJkFCyi07J3jj6
+    I6xX0An+i8P/k/DyldjaMoutARLswuMAEQEAAYkBHwQYAQIACQUCVGP3AAIbDAAK
+    CRCLIxWf5ZRDNpN5CACdKoLcjJIIPQuCPyLdba5z6prRRo21Yud5dtyGGhOmDAt/
+    cjlmdwlta/ZkArkTB9is4iIDvo2D4PmRA756VHEBfhqwknt5DANMm3p9A5/z+sgX
+    n/punYuskxDjOU2+NwbBXRHgXz1vQpIEVtS3bQvjmyPn/yl31NM5zZ9Lwat/ynKj
+    iAvRflohugScLVSA0VCvn4gKlxCHBvtNS22rvsPW2zbOz38pp5gU+fNRUaLRmHna
+    b97l/64k31UzIQHeAHHbGODQfJ0PpKyS9UM4vvcMldUrBL4O4fLVaeqMjAhKSfcY
+    xaePFwP+okKW1h9qvwFhNF0JSCtdJrexdCf8jGE7
+    =E8ot
+    -----END PGP PUBLIC KEY BLOCK-----
+
+jenkins-agent::reprepro_updater_config: |
+    [ubuntu_building]
+    architectures: amd64 arm64 armhf i386 source
+    distros: lucid maverick natty oneiric precise quantal raring saucy trusty utopic vivid wily xenial yakkety zesty artful wheezy jessie stretch
+    repository_path: /var/repos/ubuntu/building
+    signing_key: E5944336
+    upstream_config: /home/jenkins-agent/reprepro_config
+
+    [ubuntu_testing]
+    architectures: amd64 arm64 armhf i386 source
+    distros: lucid maverick natty oneiric precise quantal raring saucy trusty utopic vivid wily xenial yakkety zesty artful wheezy jessie stretch
+    repository_path: /var/repos/ubuntu/testing
+    signing_key: E5944336
+    upstream_config: /home/jenkins-agent/reprepro_config
+
+    [ubuntu_main]
+    architectures: amd64 arm64 armhf i386 source
+    distros: lucid maverick natty oneiric precise quantal raring saucy trusty utopic vivid wily xenial yakkety zesty artful wheezy jessie stretch
+    repository_path: /var/repos/ubuntu/main
+    signing_key: E5944336
+    upstream_config: /home/jenkins-agent/reprepro_config
+
+jenkins-agent::reprepro_config:
+    '/home/jenkins-agent/reprepro_config/ros_bootstrap.yaml':
+        ensure: 'present'
+        content: |
+            name: ros_bootstrap
+            method: http://repos.ros.org/repos/ros_bootstrap
+            suites: [lucid, maverick, natty, oneiric, precise, quantal, raring, saucy, trusty, utopic, vivid, wily, xenial, yakkety, zesty, artful,
+                     wheezy, jessie, stretch]
+            component: main
+            architectures: [i386, amd64, arm64, armel, armhf, source]
+            # filter_formula: Package (% python* )
+            # needed until we deploy the gpg key
+            verify_release: blindtrust
+
+
