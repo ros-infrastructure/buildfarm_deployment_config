@@ -1,9 +1,10 @@
 master::ip: 127.0.0.1
 repo::ip: 127.0.0.1
+jenkins::lts: true
 jenkins::slave::executors: 1
-jenkins::slave::labels: buildagent
 jenkins::slave::slave_mode: exclusive
 jenkins::slave::slave_name: agent
+jenkins::slave::install_java: false
 
 # Known hosts to add to the agent user.
 # Necessary to avoid build failures requiring interactive approval of a new
@@ -30,20 +31,12 @@ credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 # This is highly recommended for larger deployments
 # Don't use more than 75% of your RAM for Jenkins
 # Used in modules/jenkins_files/templates/etc_default_jenkins.erb
-jenkins_java_args: '-XX:UseG1GC -Xmx5g'
+jenkins_java_args: '-XX:UseG1GC -Xmx2g'
 
 # Used in modules/jenkins_files/templates/nodeMonitors.xml.erb
 jenkins::nodeMonitor::minimum_disk_space: 50G
 
 # Jenkins component module parameters.
-jenkins::lts: true
-jenkins::version: '2.73.3'
-jenkins::slave::executors: 1
-jenkins::slave::install_java: false
-jenkins::slave::labels: agent_on_master
-jenkins::slave::slave_mode: exclusive
-jenkins::slave::slave_name: agent_on_master
-
 jenkins::private_ssh_key: |
     -----BEGIN RSA PRIVATE KEY-----
     MIIEpQIBAAKCAQEAtjTmkbHWaqk6wsDUe+wECKsAD2JA34i9Truz4v6mlvUu1FNG
@@ -91,11 +84,6 @@ jenkins::github::token: somegithubtoken
 # default value of https://api.github.com can be overridden for GitHub Enterprise.
 # jenkins::github::api_url: 'https://api.github.com'
 #
-jenkins::slave::executors: 1
-jenkins::slave::labels: building_repository
-jenkins::slave::slave_mode: exclusive
-jenkins::slave::slave_name: building_repository
-
 jenkins-agent::gpg_key_id: 'E5944336'
 jenkins-agent::gpg_private_key: |
     -----BEGIN PGP PRIVATE KEY BLOCK-----
@@ -222,5 +210,4 @@ jenkins-agent::reprepro_config:
             # filter_formula: Package (% python* )
             # needed until we deploy the gpg key
             verify_release: blindtrust
-
 
