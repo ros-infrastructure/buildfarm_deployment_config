@@ -24,10 +24,6 @@ if [ -f "${script_dir}/role" ]; then
     exit 1
   fi
 else
-  if [ -z $1 ]; then
-    echo "No role specified."
-    exit 1
-  fi
   buildfarm_role="$1"
   echo $buildfarm_role > "${script_dir}/role"
 fi
