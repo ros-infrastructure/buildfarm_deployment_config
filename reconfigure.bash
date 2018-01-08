@@ -2,7 +2,8 @@
 
 set -o errexit
 
-if [[ $# -ne 1 ]]; then
+if [[ $# -ne 1 ]] || [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]];
+then
   echo -e "USAGE: $(basename $0) ROLE\n"
   echo -e "Where ROLE is one of 'master', 'agent' or 'repo' (without quotes).\n"
   exit 1
