@@ -2,6 +2,12 @@
 
 set -o errexit
 
+if [[ $# -ne 1 ]]; then
+  echo -e "USAGE: $(basename $0) ROLE\n"
+  echo -e "Where ROLE is one of 'master', 'agent' or 'repo' (without quotes).\n"
+  exit 1
+fi
+
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
 BUILDFARM_DEPLOYMENT_BRANCH=xenial
