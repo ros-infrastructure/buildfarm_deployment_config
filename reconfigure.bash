@@ -2,11 +2,19 @@
 
 set -o errexit
 
-if [[ $# -ne 1 ]] || [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]];
-then
-  echo -e "USAGE: $(basename $0) ROLE\n"
+function usage {
+  echo -e "USAGE: $(basename $0) [ROLE]\n"
   echo -e "Where ROLE is one of 'master', 'agent' or 'repo' (without quotes).\n"
+  echo -e "The role can be omitted if this script has run previously.\n"
   exit 1
+}
+
+if [[ $# -gt 1 ]]; then
+  usage
+elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]]; then
+  usage
+elif [[ ! -f "${script_dir}/role" ]]; then
+  usage
 fi
 
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
