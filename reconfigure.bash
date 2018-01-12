@@ -9,6 +9,12 @@ function usage {
   exit 1
 }
 
+BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
+BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
+BUILDFARM_DEPLOYMENT_BRANCH=xenial
+
+script_dir="$(dirname $0)"
+
 if [[ $# -gt 1 ]]; then
   usage
 elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]]; then
@@ -17,11 +23,6 @@ elif [[ ! -f "${script_dir}/role" ]]; then
   usage
 fi
 
-BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
-BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
-BUILDFARM_DEPLOYMENT_BRANCH=xenial
-
-script_dir="$(dirname $0)"
 
 # Check if a role file exists for the current machine.
 if [ -f "${script_dir}/role" ]; then
