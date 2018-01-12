@@ -19,7 +19,7 @@ if [[ $# -gt 1 ]]; then
   usage
 elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]]; then
   usage
-elif [[ ! -f "${script_dir}/role" ]]; then
+elif [ $# -eq 0 ]] && [[ ! -f "${script_dir}/role" ]]; then
   usage
 fi
 
