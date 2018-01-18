@@ -27,6 +27,14 @@ autoreconfigure: false
 # Pay special attention to the Git branch name that appears twice in the invocation below.
 autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git fetch origin xenialize && git reset --hard origin/xenialize && ./reconfigure.bash"'
 
+# This docker option is being removed from the upstream puppetlabs-docker module.
+# It isn't required on Ubuntu Xenial and causes an error when deploying to AWS with the default AWS kernel.
+#
+# By the time our project is able to move to the new puppet module (requires puppet >= 4.0) this option will probably
+# be removed.
+# https://github.com/puppetlabs/puppetlabs-docker/issues/38
+docker::manage_kernel: false
+
 # Classes to be pulled in via hiera_include classes.
 #classes:
     # Enables the New Relic sysmon daemon.
