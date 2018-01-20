@@ -2,11 +2,27 @@
 
 set -o errexit
 
+function usage {
+  echo -e "USAGE: $(basename $0) [ROLE]\n"
+  echo -e "Where ROLE is one of 'master', 'agent' or 'repo' (without quotes).\n"
+  echo -e "The role can be omitted if this script has run previously.\n"
+  exit 1
+}
+
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
 BUILDFARM_DEPLOYMENT_BRANCH=xenial
 
 script_dir="$(dirname $0)"
+
+if [[ $# -gt 1 ]]; then
+  usage
+elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]]; then
+  usage
+elif [[ $# -eq 0 ]] && [[ ! -f "${script_dir}/role" ]]; then
+  usage
+fi
+
 
 # Check if a role file exists for the current machine.
 if [ -f "${script_dir}/role" ]; then
@@ -17,10 +33,6 @@ if [ -f "${script_dir}/role" ]; then
     exit 1
   fi
 else
-  if [ -z $1 ]; then
-    echo "No role specified."
-    exit 1
-  fi
   buildfarm_role="$1"
   echo $buildfarm_role > "${script_dir}/role"
 fi
