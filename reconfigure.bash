@@ -11,7 +11,7 @@ function usage {
 
 BUILDFARM_DEPLOYMENT_PATH=/root/buildfarm_deployment
 BUILDFARM_DEPLOYMENT_URL=https://github.com/ros-infrastructure/buildfarm_deployment.git
-BUILDFARM_DEPLOYMENT_BRANCH=master
+BUILDFARM_DEPLOYMENT_BRANCH=deployment/2018-02-23
 
 script_dir="$(dirname $0)"
 
