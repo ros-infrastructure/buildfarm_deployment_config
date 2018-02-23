@@ -9,7 +9,7 @@ jenkins::slave::ui_pass: 'changeme'
 jenkins::slave::masterurl: 'http://master:8080'
 
 master::ip: 172.30.1.94
-repo::ip: 172.30.1.114
+repo::ip: 172.30.1.73
 
 # change this to match the timezone that this buildfarm is located in.
 timezone: 'America/Los_Angeles'
