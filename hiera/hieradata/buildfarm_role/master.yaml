@@ -22,7 +22,7 @@ jenkins::lts: true
 # unlikely that puppet will be run multiple times on a master host, but if you do re-run puppet
 # on master omitting an explicit version may cause Jenkins to update before you have a chance
 # to review the changelog.
-#jenkins::version: '2.89.2'
+jenkins::version: '2.89.4'
 jenkins::slave::executors: 1
 jenkins::slave::install_java: false
 jenkins::slave::labels: agent_on_master
