@@ -3,15 +3,6 @@ jenkins::slave::labels: buildagent
 jenkins::slave::slave_mode: exclusive
 jenkins::slave::slave_name: agent
 
-# Known hosts to add to the agent user.
-# Necessary to avoid build failures requiring interactive approval of a new
-# host.
-# You should definitely add the host key for your `repo` machine and any
-# other machines you will connect to during builds: a documentation host
-# for example.
-ssh_host_keys:
-  repo: repo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+bpD1Hf9LB+VFN6V6xdRsTi05gPHd0l7LhWbDZpAQM
-
 # Enable squid reverse proxy to save bandwidth redownloading packages.
 run_squid: true
 squid-in-a-can::max_cache_size: 50000
