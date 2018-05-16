@@ -53,7 +53,7 @@ docker::manage_kernel: false
 # The values below should not be changed.
 docker::package_name: docker-ce
 docker::package_source_location: https://download.docker.com/linux/ubuntu
-docker::package_source_key: https://download.docker.com/linux/ubuntu/gpg
+docker::package_key_source: https://download.docker.com/linux/ubuntu/gpg
 docker::package_key: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 docker::package_release: xenial
 docker::package_repos: stable
