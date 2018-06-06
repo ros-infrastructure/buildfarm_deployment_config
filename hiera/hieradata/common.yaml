@@ -49,6 +49,16 @@ autoreconfigure::command: 'bash -c "cd /root/buildfarm_deployment_config && git 
 # https://github.com/puppetlabs/puppetlabs-docker/issues/38
 docker::manage_kernel: false
 
+# Unless you have explicit needs with the docker version
+# The values below should not be changed.
+docker::package_name: docker-ce
+docker::package_source_location: https://download.docker.com/linux/ubuntu
+docker::package_key_source: https://download.docker.com/linux/ubuntu/gpg
+docker::package_key: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+docker::package_release: xenial
+docker::package_repos: stable
+docker::service_overrides_template: agent_files/docker-service-overrides.conf.erb
+
 # Classes to be pulled in via hiera_include classes.
 #classes:
     # Enables the New Relic sysmon daemon.
