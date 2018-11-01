@@ -17,11 +17,11 @@ timezone: 'America/Los_Angeles'
 # SSH keys to be added to each host.
 # The jenkins-agent public key is one you'll want to generate specifically for your deployment.
 # An example:
-#    $ ssh-keygen -t ed25519 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_key
-# Then copy the type and key in buildfarm_deployment_key.pub into the jenkins-agent@my-buildfarm key field below.
+#    $ ssh-keygen -t rsa -b 4096 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_rsa
+# Then copy the type and key in buildfarm_deployment_rsa.pub into the jenkins-agent@my-buildfarm key field below.
 # The user field should remain jenkins-agent so it can be used to authenticate with the jenkins-agent user on the repo host.
 #
-# The contents of the private key in the example above buildfarm_deployment_key
+# The contents of the private key in the example above buildfarm_deployment_rsa
 # should be copied to the `jenkins::private_ssh_key` field of hiera/hieradata/buildfarm_role/master.yaml
 # where it will be added via ssh-agent to running jenkins jobs on all agents.
 ssh_keys:
