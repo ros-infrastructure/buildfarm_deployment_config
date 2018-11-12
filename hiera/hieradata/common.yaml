@@ -25,11 +25,24 @@ timezone: 'America/Los_Angeles'
 # should be copied to the `jenkins::private_ssh_key` field of hiera/hieradata/buildfarm_role/master.yaml
 # where it will be added via ssh-agent to running jenkins jobs on all agents.
 ssh_keys:
-    'jenkins-agent@my-buildfarm':
-        key: REPLACE_WITH_AGENT_SSH_PUBLIC_KEY
-        type: REPLACE_WITH_AGENT_SSH_KEY_TYPE
-        user: jenkins-agent
-        require: User[jenkins-agent]
+  # Using the `buildfarm_deployment_rsa.pub` in the above example
+  # you'll split the file contentsinto three different components separated by spaces:
+  # * type: always ssh-rsa for rsa keys but different for other key types.
+  # * public key value: The verbatim text of your public key base64-encoded.
+  #   Depending on the key length this may be very long and include one or two trailing `=` of padding.
+  # * comment: a plaintext "comment" which is generally used as a label identifying the key.
+  # For example consider the key below:
+  #     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCuIjV8RI7QOay95BAOuv9NlaKlm0xMfD9Q12ynKPElW+1cYhOmdmqrRqavbYxD9v2wB4hRl7VDsJak0w21UakyfKAZjhhmiMUA1yaQtJCKvw5RFbM6O/QmPNAnQDaVR2X1tRW5DVvbO2Z7ppQIHD3Ln3t5yYI/fwOgfBIsgr09Pw== jenkins-agent@my-buildfarm
+  # * The type is `ssh-rsa`.
+  # * The key value is `AAAAB3NzaC1yc2EAAAADAQABAAAAgQCuIjV8RI7QOay95BAOuv9NlaKlm0xMfD9Q12ynKPElW+1cYhOmdmqrRqavbYxD9v2wB4hRl7VDsJak0w21UakyfKAZjhhmiMUA1yaQtJCKvw5RFbM6O/QmPNAnQDaVR2X1tRW5DVvbO2Z7ppQIHD3Ln3t5yYI/fwOgfBIsgr09Pw==`.
+  # * The comment is `jenkins-agent@my-buildfarm`.
+  #
+  # Use the comment as the key name
+  'jenkins-agent@my-buildfarm':
+      type: REPLACE_WITH_AGENT_SSH_KEY_TYPE
+      key: REPLACE_WITH_AGENT_SSH_KEY
+      user: jenkins-agent
+      require: User[jenkins-agent]
     ## If you wish to add keys for administrative access you can do so as well.
     ## Additional keys will not be accessible to jenkins agents without additional configuraiton.
     #'adminuser@my-buildfarm':
