@@ -7,6 +7,8 @@ then
   exit 1
 fi
 
+apt-get update -qq
+
 apt-get install -y puppet librarian-puppet
 
 # Needed to use the Docker upstream apt repositories.
