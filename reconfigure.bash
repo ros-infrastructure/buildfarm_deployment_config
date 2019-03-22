@@ -1,6 +1,11 @@
 #!/bin/bash
-
 set -o errexit
+
+if [ "$EUID" -ne 0 ];
+then
+  echo "This script should be run as root (or with sudo)."
+  exit 1
+fi
 
 function usage {
   echo -e "USAGE: $(basename $0) [ROLE]\n"
