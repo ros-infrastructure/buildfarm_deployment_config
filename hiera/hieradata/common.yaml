@@ -12,11 +12,11 @@ jenkins::slave::version: *jenkins_swarm_version
 # This should be unchanged so that the masterurl always uses the hosts entry to reach master.
 jenkins::slave::masterurl: 'http://master:8080'
 
-master::ip: 172.30.1.145
-repo::ip: 172.30.1.69
+master::ip: 172.17.0.2
+repo::ip: 172.17.0.3
 
 # change this to match the timezone that this buildfarm is located in.
-timezone: 'America/Los_Angeles'
+timezone: 'Asia\Hong_Kong'
 
 # SSH keys to be added to each host.
 # The jenkins-agent public key is one you'll want to generate specifically for your deployment.
@@ -43,11 +43,10 @@ ssh_keys:
   #
   # Use the comment as the key name
   'jenkins-agent@my-buildfarm':
-      type: REPLACE_WITH_AGENT_SSH_KEY_TYPE
-      key: REPLACE_WITH_AGENT_SSH_KEY
-      user: jenkins-agent
-      require: User[jenkins-agent]
-    ## If you wish to add keys for administrative access you can do so as well.
+      type: ssh-rsa
+      key: AAAAB3NzaC1yc2EAAAADAQABAAACAQDKwY/kNd/zNDBZqnjuy2peTHBZdjv5d8kYaIHwizaDSaC5pbDfe3hRaKsCWLS/77uUsupHO/xp1kLAoIShypd2bGrLV9oJHxJaLn0+OL7wsF9cT48JMiUPXZIoS3sLYT0TeQ7hDsnN62veFwvH9NMCgFCiMYD8YJkvYD0Q1Kf+y9BtkquyXfLwIeZrlGUGmBJ2I69hBfXzHPHfx5aktdiR5foNgssBgzVtvB2gq/AaCfQWL8Yg+eOwKaoz0JT41KXcspceOrdN/Cg0vJaLwv6WExHIt0ysF8qk95lOkMhR1Sjlsm/4iqVQjhOiQvNLsRBEK4jVbIUoOE/1DBU85HYswQ4oxrXcbRlHeR70KwcioGAZ4fg+LUb6LvKJmVNlOiUZXMBbLiBJ9msxR6x/1n4Oo/+6K01i3Wk/rbd5xFG4L8M4fg6ad8frUa4Hz3xc89Z7iqXzmulqoz8+rw5WScZOf1Pkd/6BI/nD+88f8B/kncGfwG+6v/k48L5X5n2WfTpHPkjJKZi0T1YhK/PAaYLAAexmqb+CSoQ9CEL6/cIN+JQAcWJN/NfUMvxS1DQ7vRL3NX3Nx0GYDcES7awMDQTLZURxk2Y7uobnyVm14gyS5lviWaclHXiwCISOf15QffxLXXvaDZgroiTRJueic+YUzw90Rgg4Qbju9KntdfYmlw== 
+      user: root
+          ## If you wish to add keys for administrative access you can do so as well.
     ## Additional keys will not be accessible to jenkins agents without additional configuraiton.
     #'adminuser@my-buildfarm':
     #    key: REPLACE_WITH_YOUR_ADMIN_SSH_PUBLIC_KEY
@@ -63,7 +62,7 @@ ssh_keys:
 #     ssh repo -T cat /etc/ssh/ssh_host_ed25519_key.pub
 # will print your ed25519 host key which you can paste below
 ssh_host_keys:
-  repo: repo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+bpD1Hf9LB+VFN6V6xdRsTi05gPHd0l7LhWbDZpAQM
+  repo: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiQYazh+Lv1JFjDgVcff2Z2VtXHPQ493eWG2Xbi070m
 
 # if `autoreconfigure` is true this will set a cron task to re-run puppet periodically.
 # Do not autoreconfigure your master machine during normal running, doing so will overwrite
