@@ -16,7 +16,7 @@ master::ip: 172.17.0.2
 repo::ip: 172.17.0.3
 
 # change this to match the timezone that this buildfarm is located in.
-timezone: 'Asia\Hong_Kong'
+timezone: 'Asia/Hong_Kong'
 
 # SSH keys to be added to each host.
 # The jenkins-agent public key is one you'll want to generate specifically for your deployment.
