@@ -47,6 +47,11 @@ mkdir -p /etc/puppet/hieradata
 cp hiera/hiera.yaml /etc/puppet/
 cp -r hiera/hieradata/* /etc/puppet/hieradata/
 
+# If log file already exists, rotate it to have a clear one for the new execution
+if [ -f "/var/log/puppet.log" ]; then
+  savelog /var/log/puppet.log
+fi
+
 echo "Asserting latest version of $BUILDFARM_DEPLOYMENT_URL as $BUILDFARM_DEPLOYMENT_BRANCH"
 cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard origin/$BUILDFARM_DEPLOYMENT_BRANCH
 echo "Running librarian-puppet"
