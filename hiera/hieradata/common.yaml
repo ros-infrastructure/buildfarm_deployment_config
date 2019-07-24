@@ -21,7 +21,7 @@ timezone: 'America/Los_Angeles'
 # SSH keys to be added to each host.
 # The jenkins-agent public key is one you'll want to generate specifically for your deployment.
 # An example:
-#    $ ssh-keygen -t rsa -b 4096 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_rsa
+#    $ ssh-keygen -m PEM -t rsa -b 4096 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_rsa
 # Then copy the type and key in buildfarm_deployment_rsa.pub into the jenkins-agent@my-buildfarm key field below.
 # The user field should remain jenkins-agent so it can be used to authenticate with the jenkins-agent user on the repo host.
 #
