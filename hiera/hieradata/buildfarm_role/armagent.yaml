@@ -1,0 +1,12 @@
+jenkins::slave::executors: 4
+jenkins::slave::labels: buildagent_arm64
+jenkins::slave::slave_mode: exclusive
+jenkins::slave::slave_name: agent_arm64
+
+master::ip: 127.0.0.1
+repo::ip: 127.0.0.1
+
+# Enable squid reverse proxy to save bandwidth redownloading packages.
+run_squid: true
+squid-in-a-can::max_cache_size: 50000
+# squid-in-a-can::max_cache_object: 1000
