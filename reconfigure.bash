@@ -58,3 +58,9 @@ env FACTER_buildfarm_role="$buildfarm_role" puppet apply --verbose \
   --logdest /var/log/puppet.log \
   -e "include role::buildfarm::${buildfarm_role}" \
   || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
+
+# Workaround needed for the GPU support. Chef implementation lacks of
+# a restart of lightdm to reload configuration properly
+if [[ $buildfarm_role == 'agent_gpu' ]]; then
+  service lightdm restart
+fi
