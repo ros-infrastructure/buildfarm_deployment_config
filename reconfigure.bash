@@ -47,6 +47,11 @@ mkdir -p /etc/puppet/hieradata
 cp hiera/hiera.yaml /etc/puppet/
 cp -r hiera/hieradata/* /etc/puppet/hieradata/
 
+# If log file already exists, rotate it to have a clear one for the new execution
+if [ -f "/var/log/puppet.log" ]; then
+  savelog /var/log/puppet.log
+fi
+
 echo "Asserting latest version of $BUILDFARM_DEPLOYMENT_URL as $BUILDFARM_DEPLOYMENT_BRANCH"
 cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard origin/$BUILDFARM_DEPLOYMENT_BRANCH
 echo "Running librarian-puppet"
@@ -58,3 +63,14 @@ env FACTER_buildfarm_role="$buildfarm_role" puppet apply --verbose \
   --logdest /var/log/puppet.log \
   -e "include role::buildfarm::${buildfarm_role}" \
   || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
+
+err_count=$(grep -c "(err)" /var/log/puppet.log)
+warn_count=$(grep -c "(warning)" /var/log/puppet.log)
+
+if [ $err_count -gt 0 ] || [ $warn_count -gt 0 ] ; then
+  echo Running puppet resulted in $err_count errors and $warn_count warnings
+  if [ $err_count -gt 0 ] ; then
+    echo Showing the last 10 error messages
+    grep "(err)" /var/log/puppet.log | tail -n 10
+  fi
+fi
