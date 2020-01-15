@@ -64,8 +64,8 @@ env FACTER_buildfarm_role="$buildfarm_role" puppet apply --verbose \
   -e "include role::buildfarm::${buildfarm_role}" \
   || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
 
-err_count=$(grep -c "(err)" /var/log/puppet.log)
-warn_count=$(grep -c "(warning)" /var/log/puppet.log)
+err_count=$(grep -c "(err)" /var/log/puppet.log) || true
+warn_count=$(grep -c "(warning)" /var/log/puppet.log) || true
 
 if [ $err_count -gt 0 ] || [ $warn_count -gt 0 ] ; then
   echo Running puppet resulted in $err_count errors and $warn_count warnings
