@@ -4,6 +4,10 @@
 # If you use the GitHub authentication plugin with Jenkins you will want to set this to a GitHub username and access token.
 jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
+# The version of the swarm client plugin should be the same between the jenkins master and agents on all hosts.
+# Note that versions above 3.0 require use of a modified version of the docker puppet module
+jenkins::swarm_version: &jenkins_swarm_version '3.14'
+jenkins::slave::version: *jenkins_swarm_version
 
 # This should be unchanged so that the masterurl always uses the hosts entry to reach master.
 jenkins::slave::masterurl: 'http://master:8080'
@@ -17,7 +21,7 @@ timezone: 'America/Los_Angeles'
 # SSH keys to be added to each host.
 # The jenkins-agent public key is one you'll want to generate specifically for your deployment.
 # An example:
-#    $ ssh-keygen -t rsa -b 4096 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_rsa
+#    $ ssh-keygen -m PEM -t rsa -b 4096 -C "jenkins-agent@my-buildfarm" -f buildfarm_deployment_rsa
 # Then copy the type and key in buildfarm_deployment_rsa.pub into the jenkins-agent@my-buildfarm key field below.
 # The user field should remain jenkins-agent so it can be used to authenticate with the jenkins-agent user on the repo host.
 #
@@ -49,7 +53,6 @@ ssh_keys:
     #    key: REPLACE_WITH_YOUR_ADMIN_SSH_PUBLIC_KEY
     #    type: REPLACE_WITH_YOUR_ADMIN_SSH_KEY_TYPE
     #   user: root
-
 
 # Known hosts to add to the jenkins-agent user.
 # Necessary to avoid build failures requiring interactive approval of a new

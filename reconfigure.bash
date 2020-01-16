@@ -47,6 +47,11 @@ mkdir -p /etc/puppet/hieradata
 cp hiera/hiera.yaml /etc/puppet/
 cp -r hiera/hieradata/* /etc/puppet/hieradata/
 
+# If log file already exists, rotate it to have a clear one for the new execution
+if [ -f "/var/log/puppet.log" ]; then
+  savelog /var/log/puppet.log
+fi
+
 echo "Asserting latest version of $BUILDFARM_DEPLOYMENT_URL as $BUILDFARM_DEPLOYMENT_BRANCH"
 cd $BUILDFARM_DEPLOYMENT_PATH && git fetch origin && git reset --hard origin/$BUILDFARM_DEPLOYMENT_BRANCH
 echo "Running librarian-puppet"
@@ -58,9 +63,3 @@ env FACTER_buildfarm_role="$buildfarm_role" puppet apply --verbose \
   --logdest /var/log/puppet.log \
   -e "include role::buildfarm::${buildfarm_role}" \
   || { r=$?; echo "puppet failed, please check /var/log/puppet.log, the last 10 lines are:"; tail -n 10 /var/log/puppet.log; exit $r; }
-
-# Workaround needed for the GPU support. Chef implementation lacks of
-# a restart of lightdm to reload configuration properly
-if [[ $buildfarm_role == 'agent_gpu' ]]; then
-  service lightdm restart
-fi
