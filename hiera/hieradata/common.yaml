@@ -1,7 +1,9 @@
 # Jenkins username and password the agents should use to authenticate with the client.
 # Both master and repo machines have specific agents: agent_on_master and building_repostory respectively
 # That make use of this configuration as well.
-# If you use the GitHub authentication plugin with Jenkins you will want to set this to a GitHub username and access token.
+# If you use the [GitHub authentication plugin](https://plugins.jenkins.io/github-oauth/) as the authentication
+# provider for Jenkins you will want to register it as a [GitHub application](https://github.com/settings/applications/new)
+# and set this to a GitHub username and access token.
 jenkins::slave::ui_user: 'admin'
 jenkins::slave::ui_pass: 'changeme'
 # The version of the swarm client plugin should be the same between the jenkins master and agents on all hosts.
