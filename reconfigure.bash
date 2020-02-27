@@ -38,7 +38,7 @@ else
 fi
 
 if [ ! -d /root/buildfarm_deployment ]; then
-  echo "/root/buildfarm_deplyment did not exist, cloning."
+  echo "/root/buildfarm_deployment did not exist, cloning."
   git clone $BUILDFARM_DEPLOYMENT_URL /root/buildfarm_deployment -b $BUILDFARM_DEPLOYMENT_BRANCH
 fi
 
