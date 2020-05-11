@@ -27,7 +27,7 @@ fi
 # Check if a role file exists for the current machine.
 if [ -f "${script_dir}/role" ]; then
   buildfarm_role=$(cat "${script_dir}/role")
-  if [ $1 != $buildfarm_role ]; then
+  if [ "$1" != "" ] && [ "$1" != "$buildfarm_role" ]; then
     echo "ERROR: this machine was previously provisioned as ${buildfarm_role}"
     echo "  To change role to $1 please delete the 'role' file and rerun this command."
     exit 1
