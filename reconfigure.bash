@@ -4,7 +4,7 @@ set -o errexit
 
 function usage {
   echo -e "USAGE: $(basename $0) [ROLE]\n"
-  echo -e "Where ROLE is one of 'master', 'agent' or 'repo' (without quotes).\n"
+  echo -e "Where ROLE is one of 'master', 'agent', 'agent_gpu' or 'repo' (without quotes).\n"
   echo -e "The role can be omitted if this script has run previously.\n"
   exit 1
 }
@@ -17,7 +17,7 @@ script_dir="$(dirname $0)"
 
 if [[ $# -gt 1 ]]; then
   usage
-elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "repo" ]]; then
+elif [[ $# -eq 1 ]] && [[ $1 != "master" && $1 != "agent" && $1 != "agent_gpu" && $1 != "repo" ]]; then
   usage
 elif [[ $# -eq 0 ]] && [[ ! -f "${script_dir}/role" ]]; then
   usage
@@ -73,4 +73,10 @@ if [ $err_count -gt 0 ] || [ $warn_count -gt 0 ] ; then
     echo Showing the last 10 error messages
     grep "(err)" /var/log/puppet.log | tail -n 10
   fi
+fi
+
+# Workaround needed for the GPU support. Chef implementation lacks of
+# a restart of lightdm to reload configuration properly
+if [[ $buildfarm_role == 'agent_gpu' ]]; then
+  service lightdm restart
 fi
