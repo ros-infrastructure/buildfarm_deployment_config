@@ -130,3 +130,15 @@ jenkins-agent::reprepro_config:
             # needed until we deploy the gpg key
             verify_release: blindtrust
 
+# This configuration should be uncommented to enable deployment of a Pulp instance for
+# servicing RPM repositories. The passphrase here should match the Jenkins credential
+# specified in the master configuration.
+# jenkins-agent::pulp_config:
+#     admin_passphrase: Q9&y7DBx^gFmMEZt
+#     rpm:
+#         el:
+#             architectures: [x86_64]
+#             versions: ['7']
+#         fedora:
+#             architectures: [x86_64]
+#             versions: ['32']

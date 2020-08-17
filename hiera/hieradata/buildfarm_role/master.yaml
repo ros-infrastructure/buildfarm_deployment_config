@@ -5,6 +5,13 @@ credentials::jenkins-slave::username: jenkins-agent
 credentials::jenkins-slave::id: 1e7d4696-7fd4-4bc6-8c87-ebc7b6ce16e5
 credentials::jenkins-slave::passphrase: 4lRsx/NwfEndwUlcWOOnYg==
 
+# Uncomment below to add a credential for communicating with the API endpoint of a Pulp instance.
+# This is only necessary when configuring support for RPM packaging.
+# This passphrase should match the passphrase specified in the repo configuration.
+# credentials::pulp-api::username: admin
+# credentials::pulp-api::id: 0ddb9953-40d3-4922-80be-298086e30370
+# credentials::pulp-api::passphrase: Q9&y7DBx^gFmMEZt
+
 # Uncomment below to increase the memory available for Jenkins
 # This is highly recommended for larger deployments
 # Don't use more than 75% of your RAM for Jenkins
