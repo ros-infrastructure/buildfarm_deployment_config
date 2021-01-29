@@ -23,6 +23,16 @@ elif [[ $# -eq 0 ]] && [[ ! -f "${script_dir}/role" ]]; then
   usage
 fi
 
+# Confirm that node-specific facts are usable.
+if ! grep -q '^trusted_node_data ?= ?true' /etc/puppet/puppet.conf; then
+  awk -f- > /tmp/puppet.conf /etc/puppet/puppet.conf <<'AWK'
+/^\[main\]$/ { print $0; print "trusted_node_data=true"; }
+!/^\[main\]$/ { print $0; }
+AWK
+  mv /etc/puppet/puppet.conf /etc/puppet/puppet.conf.$(date -I)
+  mv /tmp/puppet.conf /etc/puppet/puppet.conf
+fi
+
 
 # Check if a role file exists for the current machine.
 if [ -f "${script_dir}/role" ]; then
